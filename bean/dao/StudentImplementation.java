@@ -81,112 +81,130 @@ public  static void  getById()  {
 }//close byId method
 public static void getUpdate() {
 	boolean exit=false;
+	boolean b=false;
 	sc=new Scanner(System.in);
-	System.out.println("Enter the Rollno you want Update");
-	int i=sc.nextInt();
-	if(i<1) {
-		throw new ByIdException();
-	}
-	else {
 	do {
-	System.out.println("Select an option ");
-	System.out.println("1.update the name");
-	System.out.println("2.update the phone no ");
-	System.out.println("3.to exit from update");
-	switch(sc.nextInt()) {
+	System.out.println("1.enter Rollno");
+	System.out.println("2.Exit");
+	System.out.println("Select your choice");
+	int a=sc.nextInt();
+	switch(a) {
 	case 1:{
-		try {
-			factory=Persistence.createEntityManagerFactory("student");
-			manager=factory.createEntityManager();
-
-			EntityTransaction transaction=manager.getTransaction();
-			transaction.begin();
-			String update="update Employee set ename=:name where eid=:id";
-			Query query=manager.createQuery(update);
-			System.out.println("Enter name");
-			
-			query.setParameter("name",sc.next());
-			
-			query.setParameter("id",i);
-			
-			
-			int result=query.executeUpdate(); 
-			transaction.commit();
-			
-		
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		{System.out.println("Enter the Rollno you want Update");
+		int i=sc.nextInt();
+		if(i<1) {
+			throw new ByIdException();
 		}
-		finally {
-			if(manager!=null)
-			{
-				manager.close();
+		else {
+		do {
+		System.out.println("Select an option ");
+		System.out.println("1.update the name");
+		System.out.println("2.update the phone no ");
+		System.out.println("3.to exit from update");
+		switch(sc.nextInt()) {
+		case 1:{
+			try {
+				factory=Persistence.createEntityManagerFactory("student");
+				manager=factory.createEntityManager();
+
+				EntityTransaction transaction=manager.getTransaction();
+				transaction.begin();
+				String update="update Employee set ename=:name where eid=:id";
+				Query query=manager.createQuery(update);
+				System.out.println("Enter name");
+				
+				query.setParameter("name",sc.next());
+				
+				query.setParameter("id",i);
+				
+				
+				int result=query.executeUpdate(); 
+				transaction.commit();
+				
+			
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		if(factory!=null) {
-			factory.close();
+			finally {
+				if(manager!=null)
+				{
+					manager.close();
+				}
+			if(factory!=null) {
+				factory.close();
+			}
 		}
-	}
 
-	}//close case1
-	
+		}//close case1
+		
+		break;
+		case 2:{
+			try {
+				factory=Persistence.createEntityManagerFactory("student");
+				manager=factory.createEntityManager();
+
+				EntityTransaction transaction=manager.getTransaction();
+				transaction.begin();
+				String update="update Employee set phno=:phno where eid=:id";
+				Query query=manager.createQuery(update);
+				System.out.println("Enter phone number");
+				
+				query.setParameter("phno",sc.nextLong());
+				
+				query.setParameter("id",i);
+				
+				
+				int result=query.executeUpdate(); 
+				transaction.commit();
+				
+			
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				if(manager!=null)
+				{
+					manager.close();
+				}
+			if(factory!=null) {
+				factory.close();
+			}
+		}
+			
+		}
+		break;
+		//close case 2
+		case 3:{System.out.println("Do you want to continue the process");
+				System.out.println("1.NO");
+				System.out.println("2.YES");
+				if(sc.nextInt()==1) {
+					exit=true;
+				}
+			
+		}
+		break;
+		default:System.out.println("Enter valid choice");
+		
+		}//close of Switch block
+		
+		}// close of do loop
+		while(!exit);
+		}// close of else
+		}
+		}
 	break;
 	case 2:{
-		try {
-			factory=Persistence.createEntityManagerFactory("student");
-			manager=factory.createEntityManager();
-
-			EntityTransaction transaction=manager.getTransaction();
-			transaction.begin();
-			String update="update Employee set phno=:phno where eid=:id";
-			Query query=manager.createQuery(update);
-			System.out.println("Enter phone number");
-			
-			query.setParameter("phno",sc.nextLong());
-			
-			query.setParameter("id",i);
-			
-			
-			int result=query.executeUpdate(); 
-			transaction.commit();
-			
-		
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		finally {
-			if(manager!=null)
-			{
-				manager.close();
-			}
-		if(factory!=null) {
-			factory.close();
-		}
+		b=true;
 	}
-		
+	
 	}
-	break;
-	//close case 2
-	case 3:{System.out.println("Do you want to continue the process");
-			System.out.println("1.NO");
-			System.out.println("2.YES");
-			if(sc.nextInt()==1) {
-				exit=true;
-			}
-		
+	
 	}
-	break;
-	default:System.out.println("Enter valid choice");
-	
-	}//close of Switch block
-	
-	}// close of do loop
-	while(!exit);
-	}// close of else
-	
+	while(!b);
 }//close getUpdate method
 public static void getDelete() {
 	sc=new Scanner(System.in);
